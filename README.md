@@ -1,58 +1,222 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎡 Sistem Manajemen Pasar Malam
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi berbasis web menggunakan **Laravel 11** untuk mengelola operasional pasar malam, memantau aktivitas wahana, mengatur penyewaan tenda, dan mencatat pemasukan setiap tenda secara terstruktur.
 
-## About Laravel
+## ✨ Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Landing Page** — Halaman utama modern yang menampilkan informasi dan fitur aplikasi.
+- **Autentikasi Pengguna** — Login, registrasi, dan logout untuk mengakses sistem.
+- **Dashboard** — Ringkasan jumlah tenda, penyewa, wahana, aktivitas, dan pemasukan.
+- **Manajemen Penyewa** — Mengelola data penyewa yang berpartisipasi dalam pasar malam.
+- **Manajemen Tenda** — Mencatat nomor tenda, jenis tenda, biaya sewa, dan status penyewaan.
+- **Manajemen Wahana** — Mengelola informasi wahana dan status operasionalnya.
+- **Pemantauan Aktivitas** — Mencatat aktivitas wahana, waktu operasional, dan status kegiatan.
+- **Pencatatan Pemasukan** — Mencatat pembayaran sewa dan pemasukan dari setiap tenda.
+- **Laporan** — Menampilkan rekapitulasi pemasukan dan data operasional.
+- **Responsive UI** — Tampilan menyesuaikan desktop, tablet, dan perangkat mobile.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Teknologi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP
+- Laravel 11
+- MySQL
+- Blade Template Engine
+- Bootstrap 5
+- Bootstrap Icons
+- JavaScript
+- Composer
+- Node.js dan NPM (jika diperlukan oleh aset frontend)
 
-## Learning Laravel
+## 📋 Persyaratan Sistem
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Pastikan perangkat kamu sudah memiliki:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP yang memenuhi persyaratan Laravel 11.
+- Composer.
+- MySQL atau MariaDB.
+- Node.js dan NPM jika menggunakan proses build frontend.
+- Web browser modern.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🚀 Instalasi
 
-## Agentic Development
+### 1. Buat atau siapkan project Laravel 11
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Jika memulai dari awal, jalankan:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer create-project laravel/laravel pasar-malam "^11.0"
+cd pasar-malam
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Jika sudah memiliki project, langsung masuk ke folder project tersebut.
 
-## Contributing
+### 2. Pasang autentikasi Laravel Breeze
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Jika project belum memiliki autentikasi:
 
-## Code of Conduct
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install blade
+npm install
+npm run build
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> Jika Breeze sudah terpasang dan dikonfigurasi, langkah ini tidak perlu diulang.
 
-## Security Vulnerabilities
+### 3. Konfigurasi database
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Buat database MySQL, misalnya:
 
-## License
+```sql
+CREATE DATABASE pasar_malam;
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Sesuaikan konfigurasi pada file `.env`:
+
+```env
+APP_NAME="Sistem Manajemen Pasar Malam"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=pasar_malam
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Sesuaikan username dan password dengan konfigurasi MySQL di perangkat kamu.
+
+### 4. Generate application key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Pasang source code aplikasi
+
+Salin file aplikasi ke direktori Laravel sesuai struktur foldernya, termasuk:
+
+- `app/Models`
+- `app/Http/Controllers`
+- `database/migrations`
+- `database/seeders`
+- `resources/views`
+- `routes/web.php`
+
+Periksa kembali agar tidak menimpa konfigurasi penting atau menghapus route bawaan autentikasi yang masih diperlukan.
+
+### 6. Jalankan migration
+
+```bash
+php artisan migrate
+```
+
+Jika project menyediakan seeder untuk data awal, jalankan sesuai konfigurasi seeder:
+
+```bash
+php artisan db:seed
+```
+
+**Perhatian:** gunakan `php artisan migrate:fresh --seed` hanya pada database pengembangan yang boleh dihapus karena perintah tersebut menghapus tabel yang ada sebelum membuatnya kembali.
+
+### 7. Jalankan aplikasi
+
+```bash
+php artisan optimize:clear
+php artisan serve
+```
+
+Buka alamat berikut pada browser:
+
+http://127.0.0.1:8000
+
+## 📁 Struktur Direktori
+
+```text
+pasar-malam/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   └── Models/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── resources/
+│   └── views/
+│       ├── auth/
+│       ├── dashboard/
+│       ├── layouts/
+│       ├── partials/
+│       ├── tenants/
+│       ├── tents/
+│       ├── wahana/
+│       ├── activities/
+│       ├── payments/
+│       └── reports/
+├── routes/
+│   └── web.php
+├── .env
+├── artisan
+├── composer.json
+└── README.md
+```
+
+Struktur folder di atas merupakan gambaran umum. Nama direktori dan file harus disesuaikan dengan source code yang digunakan.
+
+## 💰 Alur Pengelolaan Pemasukan
+
+1. Admin memasukkan data penyewa.
+2. Admin mencatat tenda yang tersedia dan biaya sewanya.
+3. Tenda dihubungkan dengan penyewa sesuai proses penyewaan.
+4. Admin mencatat pembayaran sewa dan pemasukan lainnya.
+5. Sistem menampilkan ringkasan pemasukan berdasarkan data transaksi.
+6. Admin memeriksa laporan untuk memantau pendapatan dan operasional pasar malam.
+
+**Catatan:** pemasukan sebaiknya dihitung dari transaksi pembayaran yang tercatat, bukan hanya dari biaya sewa yang direncanakan.
+
+## 🔐 Keamanan
+
+- Gunakan autentikasi untuk halaman pengelolaan.
+- Validasi data pada setiap proses penyimpanan.
+- Lindungi form menggunakan CSRF Laravel.
+- Jangan membagikan file `.env` atau kredensial database.
+- Untuk produksi, gunakan `APP_DEBUG=false` dan konfigurasi server yang aman.
+
+## 🧪 Pemeriksaan Aplikasi
+
+Untuk menjalankan pengujian Laravel:
+
+```bash
+php artisan test
+```
+
+Untuk melihat daftar route yang terdaftar:
+
+```bash
+php artisan route:list
+```
+
+## 📌 Pengembangan Selanjutnya
+
+Aplikasi dapat dikembangkan lebih lanjut dengan:
+
+- Grafik pemasukan harian, mingguan, dan bulanan.
+- Filter laporan berdasarkan periode.
+- Ekspor laporan ke Excel atau PDF.
+- Pengingat masa sewa tenda.
+- Hak akses admin dan petugas.
+- Riwayat pembayaran dan status tunggakan.
+- Pemantauan status wahana secara berkala.
+
+## 📄 Lisensi
+
+Project ini menggunakan Laravel sebagai framework utama. Periksa lisensi masing-masing dependensi dan tentukan lisensi project sesuai kebutuhan pengembangan.
+
+---
+
+**Sistem Manajemen Pasar Malam**  
+Mengelola tenda, memantau wahana, dan mencatat pemasukan dalam satu aplikasi.
